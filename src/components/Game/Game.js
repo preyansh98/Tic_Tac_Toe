@@ -6,15 +6,7 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
     }
-
-    state = {
-        tableData: [
-            ['x', 'o', 'o'],
-            ['x', 'o', 'o'],
-            ['x', 'o', 'o']
-        ]
-    }
-
+    
     render() {
         return (
             <View style={styles.container}>

@@ -26,19 +26,25 @@ export default class Tile extends Component {
         let x = this.state.xPos; 
         let y = this.state.yPos; 
         let player = global.currentPlayer; 
-        console.log(player);
+
         if(player == 'X'){
             this.setState({icon: 'wine'});
             this.setState({isUsed : true});
+            let position_hashed = x*3 + y; 
+            global.tileMap.set(position_hashed, player);
             global.currentPlayer = 'Y';
         } else {
             this.setState({icon: 'eye'});
             this.setState({isUsed : true});
+            let position_hashed = x*3 + y; 
+            global.tileMap.set(position_hashed, player);
+
             global.currentPlayer = 'X';
         }
 
-        this.renderTile(); 
+        this.checkWin(player, x, y); 
     }
+
 
     renderTile = () => {
         if (this.state.isUsed) {
