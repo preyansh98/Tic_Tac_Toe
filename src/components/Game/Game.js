@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native';
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+import Tile from './Tile';
 
 export default class App extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
- 
+
     state = {
         tableData: [
             ['x', 'o', 'o'],
@@ -15,21 +15,57 @@ export default class App extends React.Component {
         ]
     }
 
-        render() {
-          const state = this.state;
-          return (
+    render() {
+        return (
             <View style={styles.container}>
-              <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-                <Row data={state.tableHead} style={styles.head} textStyle={styles.text}/>
-                <Rows data={state.tableData} textStyle={styles.text}/>
-              </Table>  
-        </View>
-          )
-        }
+                <View style={styles.row}>
+                    <View style={styles.tile}>
+                        <Tile x="0" y="0"/>
+                    </View>
+                    <View style={styles.tile}>
+                        <Tile x="0" y="1"/>
+                    </View>
+                    <View style={styles.tile}>
+                        <Tile x="0" y="2"/>
+                    </View>
+                </View>
+
+                <View style={styles.row}>
+                    <View style={styles.tile}>          
+                       <Tile x="1" y="0"/>
+                    </View>
+                    <View style={styles.tile}>
+                         <Tile x="1" y="1"/>
+                     </View>
+                    <View style={styles.tile}> 
+                        <Tile x="1" y="2"/>
+                    </View>
+                </View>
+
+                <View style={styles.row}>
+                    <View style={styles.tile}> 
+                        <Tile x="2" y="0"/> 
+                    </View>
+                    <View style={styles.tile}> 
+                        <Tile x="2" y="1"/> 
+                    </View>
+                    <View style={styles.tile}> 
+                        <Tile x="2" y="2"/>
+                    </View>
+                </View>
+            </View>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
     container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-    head: { height: 40, backgroundColor: '#f1f8ff' },
-    text: { margin: 6 }
+    row: {
+        flexDirection: "row"
+    },
+    tile: {
+        borderWidth: 10,
+        width: 100,
+        height: 100
+    }
 });
