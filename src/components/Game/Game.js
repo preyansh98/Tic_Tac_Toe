@@ -1,15 +1,30 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Button, Dimensions } from 'react-native';
 import Tile from './Tile';
+import {Card, CardItem} from 'native-base';
 
-export default class App extends React.Component {
+export default class App extends Component {
     constructor(props) {
         super(props);
     }
-    
+
+    reset = (event) => {
+        event.preventDefault(); 
+        global.tileMap.clear(); 
+        global.currentPlayer = 'X';
+
+        console.log("after reset");
+        
+        this.forceUpdate(); 
+    }
+
     render() {
         return (
             <View style={styles.container}>
+                <Card>
+                    <Text>Welcome to Tic Tac Toe!!!</Text>
+                </Card>
+                <Card>
                 <View style={styles.row}>
                     <View style={styles.tile}>
                         <Tile x="0" y="0"/>
@@ -45,13 +60,15 @@ export default class App extends React.Component {
                         <Tile x="2" y="2"/>
                     </View>
                 </View>
+                <Button title="Reset the game!" onPress = {(event) => this.reset(event)}/>
+            </Card>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+    container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' , alignContent:'center', justifyContent:'center'},
     row: {
         flexDirection: "row"
     },
